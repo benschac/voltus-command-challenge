@@ -1,5 +1,5 @@
 # Command Center Challenge
-We're getting the green light! Voltus is building a command center dashboard for organizations with multiple facilities enrolled in our demand response partnership(s). Think HQ for a regional franchise, like a chain of coffee shops or a series of rock quarries. Using this dashboard we'd like to be able to get a list of facilities belonging to a given organization's, and plot them visually on a map.
+We're getting the green light! Voltus is building a command center dashboard for organizations with multiple facilities enrolled in our demand response partnership(s). Think HQ for a regional franchise, like a chain of coffee shops or a series of rock quarries. Using this dashboard we'd like to be able to get a list of facilities belonging to a given organization and plot them visually on a map.
 
 ## The Task
 
