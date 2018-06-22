@@ -39,6 +39,11 @@ So, for example if the entrypoint of our app is through index.html, and we're us
 
 ![org 2](/screenshot-org-3.png?raw=true "Screenshot for organization id 3")
 
+## Project Setup
+While you're free to deviate from using React, Voltus does by and large rely on it for many web applications. Please feel free to use use any additional libraries as you see fit. 
+
+`npm run start` will start a webpack devserver.
+
 ## The Goal
 Try to duplicate the screenshots provided as closely as you can, but feel free to deviate wherever you feel necessary. The goal of this exercise is not to pixel-push through a full-fledged webapp, but rather to provide a scaffolding for possible pair programming in the future (hint: it might be pragmatic to be mindful of state changes that might manifest in future iterations). Try to get through as many as these as you can!
 
