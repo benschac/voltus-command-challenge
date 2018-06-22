@@ -41,3 +41,10 @@ So, for example if the entrypoint of our app is through index.html, and we're us
 
 ## The Goal
 Try to duplicate the screenshots provided as closely as you can, but feel free to deviate wherever you feel necessary. The goal of this exercise is not to pixel-push through a full-fledged webapp, but rather to provide a scaffolding for possible pair programming in the future (hint: it might be pragmatic to be mindful of state changes that might manifest in future iterations). Try to get through as many as these as you can!
+
+## Bonus
+Each facility has a utility meter that outputs the current kW reading (or at least the last known one). Figure out a way to update the dashboard as these readings come in.
+
+There are two ways to get realtime-ish data:
+1. polling via a simple get request: `http://challenge.voltus.co/readings/{facility_id}` here `read_time` is the time this data point was read.
+2. via a websocket subscribable here: `http://challenge.voltus.co//ws/readings`. In order to receive real-time pushes, after connecting to the websocket send a json message back up to with a field "subscribe" that contains an array of integer ids of the facilities you're interested in e.g. `{"subscribe": [1,2,3]}`
