@@ -43,7 +43,7 @@ So, for example if the entrypoint of our app is through index.html, and we're us
 Try to duplicate the screenshots provided as closely as you can, but feel free to deviate wherever you feel necessary. The goal of this exercise is not to pixel-push through a full-fledged webapp, but rather to provide a scaffolding for possible pair programming in the future (hint: it might be pragmatic to be mindful of state changes that might manifest in future iterations). Try to get through as many as these as you can!
 
 ## Bonus
-Each facility has a utility meter that outputs the current kW reading (or at least the last known one). Figure out a way to update the dashboard as these readings come in.
+Each facility has a utility meter that outputs the current kW reading (or at least the last known one). Figure out a way to update the dashboard as these readings come in. Super bonus - what do we do if a reading doesn't come in after X duration?
 
 There are two ways to get realtime-ish data:
 1. polling via a simple get request: `http://challenge.voltus.co/readings/{facility_id}` here `read_time` is the time this data point was read.
