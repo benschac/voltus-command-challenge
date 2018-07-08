@@ -1,1 +1,7 @@
-{ "presets": ["@babel/react"] }
+{ 
+  "presets": ["@babel/react", "@babel/preset-env"],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-async-to-generator"
+  ]
+ }

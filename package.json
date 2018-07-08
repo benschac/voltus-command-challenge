@@ -8,24 +8,29 @@
     "start": "webpack-dev-server --hot --inline --config webpack.config.devserver.js"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.0.0-beta.52",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "querystring": "^0.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
     "@babel/preset-react": "^7.0.0-beta.46",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "dotenv": "^6.0.0",
     "eslint": "^5.0.1",
     "eslint-plugin-react": "^7.10.0",
+    "redux-logger": "^3.0.6",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }
