@@ -1,5 +1,5 @@
-import React from 'react';
-import App from '../App';
+import React from "react";
+import App from "../App";
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import logger from "redux-logger";
@@ -11,8 +11,8 @@ import rootReducer from "../../reducers";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const store = createStore(
-  rootReducer,
-  applyMiddleware(logger, thunk)
+	rootReducer,
+	applyMiddleware(logger, thunk)
 );
 
 /**
@@ -21,13 +21,13 @@ const store = createStore(
  * @class Root
  */
 function Root(){
-  return [
-    <Provider store={store}>
-      <Router>
-        <Route path="/" component={App}/>
-      </Router>
-    </Provider>
-  ]
+	return [
+		<Provider store={store}>
+			<Router>
+				<Route path="/" component={App}/>
+			</Router>
+		</Provider>
+	];
 }
 
 export default Root;

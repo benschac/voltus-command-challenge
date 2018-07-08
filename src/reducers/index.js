@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
-import queryParam from "./queryParam";
+import organization from "./organization";
 
 /**
  * The Root Reducer
  */
 export default combineReducers({
-	queryParam
+	organization
 });

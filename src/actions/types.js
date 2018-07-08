@@ -1,1 +1,1 @@
-export const GET_FACILITY = "GET_FACILITY";
+export const GET_ORGANIZATION = "GET_ORGANIZATION";
