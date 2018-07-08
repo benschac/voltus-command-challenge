@@ -1,6 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {partial} from "lodash";
+import queryString from "query-string";
+import Header from '../Layout/Header';
 import {getOrganization} from "../../actions";
 /**
  * The Main App Component
@@ -8,33 +10,28 @@ import {getOrganization} from "../../actions";
  * @class App
  */
 class App extends React.Component {  
-
-	constructor() {
-		super();
-		const {getOrganization} = this.props;
-		state = {
-			organization: null
-		};
-
-		if (this.props.location.param) {
-			getOrganization("1");
-		}
-	}
+	state = {
+		organization: null
+	};
 
 	/** @inheritDoc */
 	render() {
+		const {organization} = this.props;
 		return (
-			<button onClick={partial(this.props.getOrganization, "2")}>Click me!</button>
+			<div>
+				<Header organizationName={organization} />
+				<button onClick={partial(this.props.getOrganization, "1")}>Click me!</button>
+			</div>
 		);
 	}
 }
 
 /** @inheritDoc */
-const mapStateToProps = (state, ownProps="1") => ({
-	facility: state.facility,
-	// Todo -- get this from react-router
-	queryParam: ownProps
-});
+const mapStateToProps = (state) => {
+	return {
+	organization: state.organization.name,
+	queryParams: queryString.parse(state.router.location.search)
+}};
 
 /** @inheritDoc */
 const mapDispatchToProps = (dispatch, ownProps) => ({
