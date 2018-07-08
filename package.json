@@ -5,7 +5,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack-dev-server --hot --inline --config webpack.config.devserver.js"
+    "start": "webpack-dev-server --hot --inline --config webpack.config.devserver.js"
   },
   "dependencies": {
     "react": "^16.4.0",
@@ -15,6 +15,7 @@
     "@babel/core": "^7.0.0-beta.46",
     "@babel/preset-react": "^7.0.0-beta.46",
     "babel-loader": "^8.0.0-beta.0",
+    "dotenv": "^6.0.0",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }
