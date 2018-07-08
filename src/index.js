@@ -1,4 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import {render} from 'react-dom'
 
-ReactDOM.render(<h1>Hello World!</h1>, document.querySelector('#injection'))
+render(<h1>Hello World!, derp, blerp</h1>, document.querySelector('#injection'))
