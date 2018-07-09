@@ -1,8 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
-
 import {partial} from "lodash";
 import queryString from "query-string";
 import PropTypes from 'prop-types';
@@ -15,19 +13,17 @@ const MyMapComponent = compose(
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `300px` }} />,
-    mapElement: <div style={{ height: `500px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
   withGoogleMap
-)(({isMarkerShown, facilities}) =>
+)(({facilities}) =>
   <GoogleMap
     defaultZoom={8}
     defaultCenter={{ lat: facilities[0].coord[0], lng: facilities[0].coord[1]}}
 	>
 	{
-		facilities.map((facility) => {
-			return <Marker position={{ lat: facility.coord[0], lng: facility.coord[1]}} />
-		})
+		facilities.map((facility) => <Marker position={{ lat: facility.coord[0], lng: facility.coord[1]}} />)
 	}
   </GoogleMap>
 )
