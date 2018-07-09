@@ -1,12 +1,44 @@
 import React from "react";
 import {connect} from "react-redux";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
 import {partial} from "lodash";
 import queryString from "query-string";
 import PropTypes from 'prop-types';
-import { compose, withProps } from "recompose"
-import Header from '../Layout/Header';
+import {compose, withProps} from "recompose";
+import {toTitleCase} from "../../utils";
+import Table from "../Table";
+import Header from "../Layout/Header";
 import {getOrganization} from "../../actions";
+
+const columns = ["name", "reading", "last_update"];
+const columnMeta = {name: "Facility", reading: "Reading", last_update: "Last Update"}
+/**
+ * 
+ * @param {string} type the value to format on 
+ * @param {string} value to transform
+ * 
+ * @return {string} formatted value
+ */
+const rowValueFormatter = (type, value) => {
+	// Note: In a production (or more real world) we could break this up into an object
+	// So that we could get an O(1) lookup rather than this O(n)
+	// I think this is a bit more readable so I went the switch route. :D
+	switch (type) {
+		case "facility":
+			return toTitleCase(value)
+		case "reading":
+			console.log({value});
+			return `${value ? `${value}kW` : '0kW'}`;
+		case "last_update":
+			const d = new Date(Date.now());
+			// This format isn't in the comp, but I think it gives the end user a bit
+			// more actionable information
+			return `${d.toDateString()}`;
+		default:
+			return `${value}`
+	}
+}
+
 
 const MyMapComponent = compose(
   withProps({
@@ -47,6 +79,7 @@ class App extends React.Component {
 	};
 
 	/** HACK -- TODO REMOVE */
+	/** @inheritDoc */
 	componentWillMount() {
 		this.props.getOrganization(this.props.queryParams.organization)
 	}
@@ -64,6 +97,12 @@ class App extends React.Component {
 					containerElement={<div style={{ height: `400px` }} />}
 					mapElement={<div style={{ height: `100%` }} />}
 					facilities={facilities}
+				/>
+				<Table
+					columns={columns}
+					rows={facilities}
+					columnMeta={columnMeta}
+					rowValueFormatter={rowValueFormatter}
 				/>
 				<button onClick={partial(this.props.getOrganization, "1")}>Click me!</button>
 			</div>
