@@ -30,5 +30,6 @@
   grid-row-start: 3;
   grid-row-end: 5;
   height: 50%;
+  overflow: hidden;
   overflow-y: scroll;
 }
