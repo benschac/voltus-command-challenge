@@ -1,0 +1,52 @@
+.table-wrapper {
+  width: 100%;
+  margin: 0 2px;
+  padding: 0 2px;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+table {
+  margin: 0 auto;
+  display: table;
+  border-spacing: 0px;
+  border: 1px solid var(--grey);
+  border-radius: 3px;
+}
+
+table thead {
+  background: var(--grey);
+  color: var(--whiteSmoke);
+  letter-spacing: 1px;
+}
+
+table thead tr td,
+table tbody tr td {
+  padding: 20px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 350px;
+  min-width: 100px;
+}
+
+table tbody tr .disabled {
+  background: var(--whiteSmoke);
+  color: var(--grey);
+}
+
+table tbody tr td {
+  border-right: 1px solid var(--grey);
+  border-top: 1px solid var(--grey);
+}
+
+table tbody tr:nth-child(2n) {
+  background: var(--greyLt);
+}
+
+table tbody tr td:last-child {
+  border-right: 1px solid transparent;
+}
+
+table tbody tr td:first-child {
+  border-left: 1px solid transparent;
+}

@@ -1,13 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
-import {partial} from "lodash";
 import queryString from "query-string";
 import PropTypes from 'prop-types';
-import {compose, withProps} from "recompose";
 import {toTitleCase} from "../../utils";
+import MapComponent from "../MapComponent";
 import Table from "../Table";
 import Header from "../Layout/Header";
+import PlaceHolder from "../PlaceHolder";
 import {getOrganization} from "../../actions";
 
 import classNames from './index.css';
@@ -29,7 +28,6 @@ const rowValueFormatter = (type, value) => {
 		case "facility":
 			return toTitleCase(value)
 		case "reading":
-			console.log({value});
 			return `${value ? `${value}kW` : '0kW'}`;
 		case "last_update":
 			const d = new Date(Date.now());
@@ -42,25 +40,7 @@ const rowValueFormatter = (type, value) => {
 }
 
 
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `300px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
-  }),
-  withScriptjs,
-  withGoogleMap
-)(({facilities}) =>
-  <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: facilities[0].coord[0], lng: facilities[0].coord[1]}}
-	>
-	{
-		facilities.map((facility) => <Marker position={{ lat: facility.coord[0], lng: facility.coord[1]}} />)
-	}
-  </GoogleMap>
-)
+
 
 
 /**
@@ -76,10 +56,6 @@ class App extends React.Component {
 		queryParams: PropTypes.object.isRequired
 	}
 
-	state = {
-		organization: null
-	};
-
 	/** HACK -- TODO REMOVE */
 	/** @inheritDoc */
 	componentWillMount() {
@@ -90,23 +66,31 @@ class App extends React.Component {
 	render() {
 		const {organization, facilities} = this.props;
 		return (
-			<div className={classNames['command-center']}>
-				<Header organizationName={organization} />
-				<MyMapComponent
-					isMarkerShown
-					googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-					loadingElement={<div style={{ height: `100%` }} />}
-					containerElement={<div style={{ height: `400px` }} />}
-					mapElement={<div style={{ height: `100%` }} />}
-					facilities={facilities}
-				/>
-				<Table
-					columns={columns}
-					rows={facilities}
-					columnMeta={columnMeta}
-					rowValueFormatter={rowValueFormatter}
-				/>
-				<button onClick={partial(this.props.getOrganization, "1")}>Click me!</button>
+			<div className={classNames["command-center"]}>
+			<Header 
+				classnames={classNames["header"]}
+				organizationName={organization} 
+			/>
+				<aside>
+					<PlaceHolder classnames={classNames["placeholder"]} content="[PlaceHolder]"/> 
+					<Table
+						columns={columns}
+						rows={facilities}
+						columnMeta={columnMeta}
+						classnames={classNames["table"]}
+						rowValueFormatter={rowValueFormatter}
+					/>
+				</aside>
+				<section className={classNames["main"]}>
+					<MapComponent
+						isMarkerShown
+						googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+						loadingElement={<div style={{ height: `100%` }} />}
+						containerElement={<div style={{ height: `100%` }} />}
+						mapElement={<div style={{ height: `100%` }} />}
+						facilities={facilities}
+					/>
+				</section>
 			</div>
 		);
 	}

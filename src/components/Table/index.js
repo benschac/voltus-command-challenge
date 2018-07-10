@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from './index.css';
+
 Table.propTypes = {
 	/** The Table Columns */
 	columns: PropTypes.array.isRequired,
@@ -22,37 +24,36 @@ Table.defaultProps = {
  * 
  * @class Table
  */
-function Table({columns, columnMeta, rows, rowValueFormatter}) {
-	console.log({columns, columnMeta, rows});
-  debugger //eslint-disable-line
+function Table({columns, columnMeta, rows, rowValueFormatter, classnames}) {
 	return (
-		<table>
-			<thead>
-				<tr>
+		<section className={`${classNames["table-wrapper"]} ${classnames}`}>
+			<table>
+				<thead>
+					<tr>
+						{
+							columns.map(column => {
+								return <th>{columnMeta[column]}</th>;
+							})
+						}
+					</tr>
+				</thead>
+				<tbody>
 					{
-						columns.map(column => {
-							return <th>{columnMeta[column]}</th>;
+						rows.map(row => {
+							return (
+								<tr>
+									{
+										columns.map(meta => {
+											return <td>{rowValueFormatter(meta, row[meta])}</td>;
+										})
+									}
+								</tr>
+							);
 						})
 					}
-				</tr>
-			</thead>
-			<tbody>
-				{
-					rows.map(row => {
-						return (
-							<tr>
-								{
-									columns.map(meta => {
-										console.log({row, meta, columns});
-										return <td>{rowValueFormatter(meta, row[meta])}</td>;
-									})
-								}
-							</tr>
-						);
-					})
-				}
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</section>
 	);
 }
 

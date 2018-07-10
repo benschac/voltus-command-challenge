@@ -1,0 +1,11 @@
+:root {
+  --grey: #808080;
+  --greyLt: #D3D3D3;
+  --greyLt2: #DCDCDC; 
+  --whiteSmoke: #F5F5F5;
+  --darkSlate: #2B3856;
+}
+
+.darkSlate {
+  color: var(--darkSlate);
+}

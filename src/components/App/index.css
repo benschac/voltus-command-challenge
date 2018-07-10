@@ -1,3 +1,34 @@
 .command-center {
   display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 60px 25% 25% 25%;
+  height: 100vh;
+}
+
+.main {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 6;
+}
+
+.header {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background: var(--whiteSmoke);
+  display: flex;
+  align-items: center;
+}
+
+.placeholder {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  /* Might be a better way to do this */
+  height: 50%;
+}
+
+.table {
+  grid-row-start: 3;
+  grid-row-end: 5;
+  height: 50%;
+  overflow-y: scroll;
 }
