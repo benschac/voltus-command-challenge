@@ -14,7 +14,7 @@ Header.propTypes = {
 function Header({organizationName}) {
 	return (
 		<nav>
-			{organizationName}
+			<p>{organizationName}</p>
 		</nav>
 	);
 }

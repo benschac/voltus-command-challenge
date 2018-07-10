@@ -5,15 +5,18 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --config webpack.config.devserver.js"
+    "start": "webpack-dev-server --mode=development --hot --inline --config webpack.config.devserver.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.0.0-beta.52",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "basscss": "^8.0.4",
     "connected-react-router": "^4.3.0",
     "history": "^4.7.2",
+    "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.10",
+    "normalize.css": "^8.0.0",
     "query-string": "^6.1.0",
     "querystring": "^0.2.0",
     "react": "^16.4.0",
@@ -30,16 +33,25 @@
     "@babel/core": "^7.0.0-beta.46",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.52",
     "@babel/preset-react": "^7.0.0-beta.46",
+    "autoprefixer": "^8.6.5",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
     "dotenv": "^6.0.0",
     "eslint": "^5.0.1",
     "eslint-plugin-react": "^7.10.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-custom-properties": "^7.0.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.5",
     "prop-types": "^15.6.2",
     "redux-logger": "^3.0.6",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "style-loader": "^0.21.0",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   }
 }

@@ -10,6 +10,8 @@ import Table from "../Table";
 import Header from "../Layout/Header";
 import {getOrganization} from "../../actions";
 
+import classNames from './index.css';
+
 const columns = ["name", "reading", "last_update"];
 const columnMeta = {name: "Facility", reading: "Reading", last_update: "Last Update"}
 /**
@@ -88,7 +90,7 @@ class App extends React.Component {
 	render() {
 		const {organization, facilities} = this.props;
 		return (
-			<div>
+			<div className={classNames['command-center']}>
 				<Header organizationName={organization} />
 				<MyMapComponent
 					isMarkerShown
