@@ -15,8 +15,8 @@ import rootReducer from "../../reducers";
 const history = createBrowserHistory();
 
 const store = createStore(
-	connectRouter(history)(rootReducer),
-	applyMiddleware(logger, thunk)
+  connectRouter(history)(rootReducer),
+  applyMiddleware(logger, thunk)
 );
 
 /**
@@ -25,15 +25,15 @@ const store = createStore(
  * @class Root
  */
 function Root(){
-	return (
-		<Provider store={store}>
-			<ConnectedRouter history={history}>
-				<Router>
-					<Route path="/" component={App}/>
-				</Router>
-			</ConnectedRouter>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Router>
+          <Route path="/" component={App}/>
+        </Router>
+      </ConnectedRouter>
+    </Provider>
+  );
 }
 
 export default Root;

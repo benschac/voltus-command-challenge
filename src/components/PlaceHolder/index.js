@@ -7,24 +7,27 @@ PlaceHolder.propTypes = {
   /** The content for the placeholder */
   content: PropTypes.string.isRequired,
   /** the classnames passed down from props */
-  classnames: PropTypes.string
-}
+  classnames: PropTypes.string,
+  /** the height of the placeholder component */
+  height: PropTypes.string.isRequired
+};
 
 PlaceHolder.defaultProps = {
-  classnames: ''
-}
+  classnames: "",
+  height: "25%"
+};
 
 /**
  * The PlaceHolder Component
  * 
  * @class PlaceHolder
  */
-function PlaceHolder({content, classnames}) {
+function PlaceHolder({content, classnames, height}) {
   return (
-    <div className={`${classnames} ${classNames["placeholder-content"]}`}>
-      <h1 className={`h3`}>{content}</h1>
+    <div style={{height}} className={`${classnames} ${classNames["placeholder-content"]}`}>
+      <h1 className={"h3"}>{content}</h1>
     </div>
-  )
+  );
 }
 
 export default PlaceHolder;

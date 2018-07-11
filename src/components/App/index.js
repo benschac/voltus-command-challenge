@@ -16,14 +16,15 @@ const columnMeta = {name: "Facility", reading: "Reading", last_update: "Last Upd
 /**
  * 
  * @param {string} type the value to format on 
- * @param {string} value to transform
+ * @param {string} row to transform
  * 
- * @return {string} formatted value
+ * @return {string} formatted row
  */
-const rowValueFormatter = (type, value) => {
+const rowFormatter = (type, row) => {
 	// Note: In a production (or more real world) we could break this up into an object
 	// So that we could get an O(1) lookup rather than this O(n)
 	// I think this is a bit more readable so I went the switch route. :D
+	const value = row[type];
 	switch (type) {
 		case "facility":
 			return toTitleCase(value)
@@ -50,10 +51,14 @@ const rowValueFormatter = (type, value) => {
  */
 class App extends React.Component {
 	static propTypes = {
-		/** The organization who's facities are being rendered */
+		/** The organization who's facilities are being rendered */
 		organization: PropTypes.string.isRequired,
 		/** Query parameters coming from the URL */
 		queryParams: PropTypes.object.isRequired
+	}
+
+	static defaultProps = {
+		organization: 'Not Found'
 	}
 
 	/** HACK -- TODO REMOVE */
@@ -72,13 +77,17 @@ class App extends React.Component {
 				organizationName={organization} 
 			/>
 				<aside>
-					<PlaceHolder classnames={classNames["placeholder"]} content="[PlaceHolder]"/> 
+					<PlaceHolder 
+						classnames={classNames["placeholder"]} 
+						content="[PlaceHolder]"
+						height="50%"
+					/> 
 					<Table
 						columns={columns}
 						rows={facilities}
 						columnMeta={columnMeta}
 						classnames={classNames["table"]}
-						rowValueFormatter={rowValueFormatter}
+						rowFormatter={rowFormatter}
 					/>
 				</aside>
 				<section className={classNames["main"]}>

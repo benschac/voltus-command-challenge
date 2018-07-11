@@ -11,16 +11,16 @@ const APIURL = "http://challenge.voltus.co/facilities/";
  * @param {string} id the organizationId
  */
 export const getOrganization = (id) => async dispatch => {
-	let response;
-	try {
-		response = await get(`${APIURL}${id}`);
-	} catch (err) {
-		// Todo -- Add dispatch error
+  let response;
+  try {
+    response = await get(`${APIURL}${id}`);
+  } catch (err) {
+    // Todo -- Add dispatch error
 		console.error(`Error in App ${err}`); //eslint-disable-line
-	}
+  }
 
-	dispatch({
-		type: GET_ORGANIZATION,
-		payload: response
-	});
+  dispatch({
+    type: GET_ORGANIZATION,
+    payload: response
+  });
 };

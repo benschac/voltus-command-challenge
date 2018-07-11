@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 60px 25% 25% 25%;
   height: 100vh;
+  overflow: hidden;
 }
 
 .main {
@@ -22,8 +23,6 @@
 .placeholder {
   grid-row-start: 2;
   grid-row-end: 3;
-  /* Might be a better way to do this */
-  height: 50%;
 }
 
 .table {
