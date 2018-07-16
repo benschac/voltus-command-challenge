@@ -19,7 +19,6 @@ Table.propTypes = {
 
 
 Table.defaultProps = {
-  // THIS IS A HACK, REMOVE IT OR EXPLAIN WHY IT'S HERE
   rows: []
 };
 /**

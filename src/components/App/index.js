@@ -53,19 +53,38 @@ static propTypes = {
   queryParams: PropTypes.object.isRequired
 }
 
+state = {error: false};
+
 static defaultProps = {
   organization: "Not Found"
 }
 
-/** HACK -- TODO REMOVE */
 /** @inheritDoc */
-componentWillMount() {
-  this.props.getOrganization(this.props.queryParams.organization);
+componentDidCatch(error, info) {
+  // Display fallback UI
+  this.setState({ error: `App component ${error}: ${info}` });
+  console.error(`App component ${error}: ${info}`); //eslint-disable-line
+}
+
+/** @inheritDoc */
+componentDidMount() {
+  const {getOrganization, queryParams} = this.props;
+  getOrganization(queryParams.organization);
 }
 
   /** @inheritDoc */
 render() {
   const {organization, facilities} = this.props;
+  const {error} = this.state;
+
+  if (error) {
+    return (
+      <div>
+        {error} please check your network connection
+      </div>
+    );
+  }
+
   return (
     <div className={classNames["command-center"]}>
       <Header 
@@ -89,10 +108,6 @@ render() {
       <section className={classNames["main"]}>
         <MapComponent
           isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: "100%" }} />}
-          containerElement={<div style={{ height: "100%" }} />}
-          mapElement={<div style={{ height: "100%" }} />}
           facilities={facilities}
         />
       </section>

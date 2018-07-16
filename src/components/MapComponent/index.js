@@ -4,6 +4,9 @@ import {compose, withProps} from "recompose";
 import uuid from "uuid/v4";
 // Map is a reserved word, work around "MapComponent"
 
+const googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places";
+const mapHeight = {height: "100%"};
+
 /**
  * The Google Maps Component
  * 
@@ -11,10 +14,10 @@ import uuid from "uuid/v4";
  */
 const MapComponent = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: "100%" }} />,
-    containerElement: <div style={{ height: "100%" }} />,
-    mapElement: <div style={{ height: "100%" }} />,
+    googleMapURL: googleMapURL,
+    loadingElement: <div style={mapHeight} />,
+    containerElement: <div style={mapHeight} />,
+    mapElement: <div style={mapHeight} />,
   }),
   withScriptjs,
   withGoogleMap,
