@@ -47,7 +47,9 @@ function Table({columns, columnMeta, rows, rowFormatter, classnames}) {
                 <tr key={uuid()}>
                   {
                     columns.map(meta => {
-                      return <td key={uuid()}>{rowFormatter(meta, row)}</td>;
+                      return (
+                        <td key={uuid()}>{rowFormatter(meta, row)}</td>
+                      );
                     })
                   }
                 </tr>

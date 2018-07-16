@@ -16,7 +16,7 @@ export const getOrganization = (id) => async dispatch => {
     response = await get(`${APIURL}${id}`);
   } catch (err) {
     // Todo -- Add dispatch error
-		console.error(`Error in App ${err}`); //eslint-disable-line
+    console.error(`Error in App ${err}`); //eslint-disable-line
   }
 
   dispatch({

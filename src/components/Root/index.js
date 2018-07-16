@@ -2,8 +2,8 @@ import React from "react";
 import App from "../App";
 import {Provider} from "react-redux";
 import { createBrowserHistory } from "history";
-import { applyMiddleware, compose, createStore } from "redux";
-import { connectRouter, ConnectedRouter, routerMiddleware } from "connected-react-router";
+import { applyMiddleware, createStore } from "redux";
+import { connectRouter, ConnectedRouter } from "connected-react-router";
 import logger from "redux-logger";
 // Evan, I heard you loud and clear during the interview.
 // I too like saga, but I need to dig in a bit more and learn how it works.
