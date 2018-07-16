@@ -1,1 +1,2 @@
 export const GET_ORGANIZATION = "GET_ORGANIZATION";
+export const GET_READING      = "GET_READING";

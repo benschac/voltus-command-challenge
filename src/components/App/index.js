@@ -2,12 +2,13 @@ import React from "react";
 import {connect} from "react-redux";
 import queryString from "query-string";
 import PropTypes from "prop-types";
+import Sockette from "sockette";
 import {toTitleCase} from "../../utils";
 import MapComponent from "../MapComponent";
 import Table from "../Table";
 import Header from "../Layout/Header";
 import PlaceHolder from "../PlaceHolder";
-import {getOrganization} from "../../actions";
+import {getOrganization, getReadings} from "../../actions";
 
 import classNames from "./index.css";
 
@@ -67,9 +68,10 @@ componentDidCatch(error, info) {
 }
 
 /** @inheritDoc */
-componentDidMount() {
-  const {getOrganization, queryParams} = this.props;
-  getOrganization(queryParams.organization);
+async componentDidMount() {
+  const {getOrganization, queryParams, getReadings} = this.props;
+  const organizationFacilities = await getOrganization(queryParams.organization);
+  getReadings(organizationFacilities);
 }
 
   /** @inheritDoc */
@@ -125,7 +127,8 @@ const mapStateToProps = (state) => ({
 
 /** @inheritDoc */
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getOrganization: (id) => dispatch(getOrganization(id || ownProps.queryParams))
+  getOrganization: (id) => dispatch(getOrganization(id || ownProps.queryParams)),
+  getReadings: (facilities) => dispatch(getReadings(facilities))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
