@@ -2,7 +2,6 @@ import React from "react";
 import {connect} from "react-redux";
 import queryString from "query-string";
 import PropTypes from "prop-types";
-import Sockette from "sockette";
 import {toTitleCase} from "../../utils";
 import MapComponent from "../MapComponent";
 import Table from "../Table";
@@ -30,7 +29,7 @@ const rowFormatter = (type, row) => {
   case "facility":
     return toTitleCase(value);
   case "reading":
-    return `${value ? `${value}kW` : "0kW"}`;
+    return `${row.value ? `${row.value}kW` : "0kW"}`;
   case "last_update":
     const d = new Date(Date.now());
     // This format isn't in the comp, but I think it gives the end user a bit
@@ -125,10 +124,5 @@ const mapStateToProps = (state) => ({
   queryParams: queryString.parse(state.router.location.search)
 });
 
-/** @inheritDoc */
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  getOrganization: (id) => dispatch(getOrganization(id || ownProps.queryParams)),
-  getReadings: (facilities) => dispatch(getReadings(facilities))
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, {getOrganization, getReadings})(App);

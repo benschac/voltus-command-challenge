@@ -12,18 +12,19 @@ const READING_API = "http://challenge.voltus.co/readings/";
  * @param {string} id the organizationId
  */
 export const getOrganization = id => async dispatch => {
-  let response;
+  // Todo -- Add a loading action.
+  let response = await get(`${ORGANIZATION_API}${id}`);
   try {
-    response = await get(`${ORGANIZATION_API}${id}`);
+    dispatch({
+      type: GET_ORGANIZATION,
+      payload: response
+    });
   } catch (err) {
-    // Todo -- Add dispatch error
+    // Todo -- Add dispatch failure
     console.error(`Error in App ${err}`); //eslint-disable-line
+  } finally {
+    dispatch(getReadings(response.data.facilities));
   }
-
-  dispatch({
-    type: GET_ORGANIZATION,
-    payload: response
-  });
 };
 
 /**
@@ -31,19 +32,19 @@ export const getOrganization = id => async dispatch => {
  * 
  * @param {array} facilities to get readings from
  */
-export const getReadings = id => async dispatch => {
-  let response;
-  let allReadings;
+export const getReadings = facilities => async dispatch => {
   // research generator functions 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+  // Todo -- Add a loading action.
   try {
-    response =  await get(`${READING_API}${id}`);
+    for (let facility of facilities) {
+      dispatch({
+        type: GET_READING,
+        payload: await get(`${READING_API}${facility.id}`)
+      });
+    }
   } catch(e) {
-    console.error(`Error in App ${err}`); //eslint-disable-line
+    // Todo -- Add dispatch failure
+    console.error(`Error in App ${e}`); //eslint-disable-line
   }
-
-  dispatch({
-    type: GET_READING,
-    payload: response
-  });
 }; 
