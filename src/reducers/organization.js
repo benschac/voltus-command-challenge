@@ -9,13 +9,13 @@ const initialState = {organization: false};
  * 
  * @return {array} of facilities with updated values
  */
-function updateFacility(updatedData, facilities) {
+function updateFacilities(updatedData, facilities) {
   const id = {id: updatedData.facility_id};
   const idx = _.findIndex(facilities, id);
   let facilityToUpdate = _.find(facilities, id);
   facilityToUpdate = {...facilityToUpdate, ...updatedData};
   facilities[idx] = facilityToUpdate;
-  return facilities;
+  return {...facilities};
 }
 /**
  * The queryParam reducer
@@ -29,15 +29,12 @@ export default (state=initialState, action) => {
   // Todo -- functional, need to give another look and clean up;
   // https://redux.js.org/faq/code-structure#structure-business-logic
   // It _seems_ like more of an architectural choice. 
-    _.extend(state.facilities, {
-      ...updateFacility(
+    return {
+      ...state,
+      ...updateFacilities(
         action.payload.data,
         state.facilities
-      )
-    });
-
-    return {
-      ...state, 
+      ) 
     };
   default:
     return state;
